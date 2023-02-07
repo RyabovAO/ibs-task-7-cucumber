@@ -41,10 +41,6 @@ public class OptionsDepositBlock extends BasePage{
 
     @FindBy(xpath = "//span[@data-testid='checkbox-icon-wrapper']/..//input[@name]/..//span[not(contains(@class,' '))]")
     private List<WebElement> listCheckBoxAdditionalOption;
-    // /..//span[@data-testid] сами чекбоксы
-
-//    @FindBy(xpath = "//span[@data-testid='checkbox-icon-wrapper']//following-sibling::span")
-//    private List<WebElement> listCheckBoxTitle;
 
     public OptionsDepositBlock.DepositPageBuilder checkDepositBlock() {
         waitUtilElementToBeVisible(optionsDepositBlock);

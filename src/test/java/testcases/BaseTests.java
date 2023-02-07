@@ -39,6 +39,6 @@ import utils.MyAllureListener;
 
         @AfterAll
         public static void afterAll() {
-            InitFramework.quitFramework();
+            // InitFramework.quitFramework();
         }
 }

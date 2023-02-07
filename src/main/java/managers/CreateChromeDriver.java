@@ -11,9 +11,9 @@ public class CreateChromeDriver implements IDriverCreate{
     public WebDriver create() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        //options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         options.setAcceptInsecureCerts(true);
         options.addArguments(PropConst.BROWSER_OPTION);
+        options.addArguments(PropConst.DISABLE_POPUP);
         return new ChromeDriver();
     }
 }

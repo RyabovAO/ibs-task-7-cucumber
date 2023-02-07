@@ -14,6 +14,7 @@ public class CreateFireFoxDriver implements IDriverCreate {
         //options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         options.setAcceptInsecureCerts(true);
         options.addArguments(PropConst.BROWSER_OPTION);
+        options.addArguments(PropConst.DISABLE_POPUP);
         return new FirefoxDriver();
     }
 }

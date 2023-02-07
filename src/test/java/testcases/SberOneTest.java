@@ -1,7 +1,6 @@
 package testcases;
 
 import org.junit.jupiter.api.Test;
-import pages.OptionsDepositBlock;
 import pages.StartPage;
 
 public class SberOneTest extends BaseTests{
@@ -24,6 +23,8 @@ public class SberOneTest extends BaseTests{
                 .selectAdditionalChekBox("Со снятием")
                 .selectAdditionalChekBox("С пополнением")
                 .selectAdditionalChekBox("С капитализацией")
-                .clickShowButton();
+                .clickShowButton()
+                .checkResultNumber(14)
+                .checkDepositInfo("Тинькофф Банк");
     }
 }
