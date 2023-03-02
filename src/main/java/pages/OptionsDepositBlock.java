@@ -1,13 +1,13 @@
 package pages;
 
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 import java.util.List;
 import java.util.Locale;
 
-public class OptionsDepositBlock extends BasePage{
+public class OptionsDepositBlock extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'SearchModal__StyledBody')]//div[@data-test='text']")
     private WebElement optionsDepositBlock;
@@ -48,14 +48,13 @@ public class OptionsDepositBlock extends BasePage{
         return pageManager.getPage(OptionsDepositBlock.DepositPageBuilder.class);
     }
 
-    public static class DepositPageBuilder extends BasePage{
+    public static class DepositPageBuilder extends BasePage {
         private OptionsDepositBlock optionsDepositBlock;
 
         public DepositPageBuilder() {
             optionsDepositBlock = pageManager.getPage(OptionsDepositBlock.class);
         }
 
-        @Step("Ввести сумму вклада")
         public DepositPageBuilder inputSumOfDeposit(String value) {
             waitUtilElementToBeVisible(optionsDepositBlock.sumOfDeposit);
             optionsDepositBlock.sumOfDeposit.clear();
@@ -63,11 +62,10 @@ public class OptionsDepositBlock extends BasePage{
             return this;
         }
 
-        @Step("Выбрать срок вклада")
         public DepositPageBuilder selectDepositTerm(String term) {
             optionsDepositBlock.termButton.click();
             for (WebElement element : optionsDepositBlock.listDepositTerm) {
-                if(element.getText().contains(term)) {
+                if (element.getText().contains(term)) {
                     element.click();
                     return this;
                 }
@@ -76,11 +74,10 @@ public class OptionsDepositBlock extends BasePage{
             return this;
         }
 
-        @Step("Выбрать тип вклада")
         public DepositPageBuilder selectDepositType(String type) {
             optionsDepositBlock.depositTypeButton.click();
             for (WebElement element : optionsDepositBlock.listDepositType) {
-                if(element.getText().contains(type)) {
+                if (element.getText().contains(type)) {
                     element.click();
                     return this;
                 }
@@ -89,13 +86,12 @@ public class OptionsDepositBlock extends BasePage{
             return this;
         }
 
-        @Step("Отметить банк")
         public DepositPageBuilder selectBankTitle(String title) {
             waitPageLoad(250, 200);
             optionsDepositBlock.inputFieldBankTitle.clear();
             optionsDepositBlock.inputFieldBankTitle.sendKeys(title);
             for (WebElement element : optionsDepositBlock.listBankTitleCheckBox) {
-                if(element.getText().toLowerCase(Locale.ROOT).contains(title.toLowerCase(Locale.ROOT))) {
+                if (element.getText().toLowerCase(Locale.ROOT).equals(title.toLowerCase(Locale.ROOT))) {
                     element.click();
                     optionsDepositBlock.inputFieldBankTitle.click();
                     return this;
@@ -105,10 +101,9 @@ public class OptionsDepositBlock extends BasePage{
             return this;
         }
 
-        @Step("Выбрать дополнительные параметры вклада")
         public DepositPageBuilder selectAdditionalChekBox(String checkbox) {
             for (WebElement element : optionsDepositBlock.listCheckBoxAdditionalOption) {
-                if(element.getText().toLowerCase(Locale.ROOT).contains(checkbox.toLowerCase(Locale.ROOT))) {
+                if (element.getText().toLowerCase(Locale.ROOT).contains(checkbox.toLowerCase(Locale.ROOT))) {
                     element.click();
                     return this;
                 }

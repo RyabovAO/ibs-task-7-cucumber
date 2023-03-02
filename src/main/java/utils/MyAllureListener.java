@@ -1,21 +1,19 @@
 package utils;
 
 import io.qameta.allure.Attachment;
-import io.qameta.allure.junit5.AllureJunit5;
 import managers.DriverManager;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-public class MyAllureListener extends AllureJunit5 implements AfterTestExecutionCallback {
+public class MyAllureListener implements AfterTestExecutionCallback {
 
     @Override
     public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
         if (extensionContext.getExecutionException().isPresent()) {
             getScreenshot();
         }
-
     }
 
     @Attachment(value = "Screenshot", type = "image/png", fileExtension = "png")

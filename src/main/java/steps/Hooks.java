@@ -1,42 +1,36 @@
-package testcases;
+package steps;
 
 import constants.PropConst;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import managers.DriverManager;
 import managers.InitFramework;
 import managers.PageManager;
 import managers.TestPropManager;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
-import utils.MyAllureListener;
 
-
-@ExtendWith(MyAllureListener.class)
-public class BaseTests {
+public class Hooks {
 
     private final DriverManager driverManager = DriverManager.getInstance();
     protected PageManager pageManager = PageManager.getInstance();
     private final TestPropManager props = TestPropManager.getInstance();
 
-    @BeforeAll
-    public static void beforeAll() {
+    @Before(order = 10)
+    public void beforeAll() {
         InitFramework.initFramework();
     }
 
-    @BeforeEach
+    @Before(order = 20)
     public void beforeEach() {
         driverManager.getDriver().get(props.getProperty(PropConst.BASE_URL));
     }
 
-    @AfterEach
+    @After(order = 20)
     public void afterEach() {
         pageManager.clearMap();
     }
 
-    @AfterAll
-    public static void afterAll() {
+    @After(order = 10)
+    public void afterAll() {
         InitFramework.quitFramework();
     }
 }
